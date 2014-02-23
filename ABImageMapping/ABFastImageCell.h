@@ -1,5 +1,5 @@
 //
-//  ABViewController.h
+//  ABFastImageCell.h
 //  ABImageMapping
 //
 //  Created by Антон Буков on 23.02.14.
@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ABViewController : UICollectionViewController
+@interface ABFastImageCell : UICollectionViewCell
+
+@property (strong, nonatomic) UIImage *image;
 
 @end

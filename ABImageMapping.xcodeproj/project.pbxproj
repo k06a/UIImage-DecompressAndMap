@@ -21,6 +21,9 @@
 		25F3FB9C18B96EC4002BB17F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25F3FB7E18B96EC4002BB17F /* UIKit.framework */; };
 		25F3FBA418B96EC4002BB17F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 25F3FBA218B96EC4002BB17F /* InfoPlist.strings */; };
 		25F3FBA618B96EC4002BB17F /* ABImageMappingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F3FBA518B96EC4002BB17F /* ABImageMappingTests.m */; };
+		25F3FBB018B9705D002BB17F /* Demo Images in Resources */ = {isa = PBXBuildFile; fileRef = 25F3FBAF18B9705D002BB17F /* Demo Images */; };
+		25F3FBB618B97643002BB17F /* UIImage+DecompressAndMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F3FBB518B97643002BB17F /* UIImage+DecompressAndMap.m */; };
+		25F3FBB918B98342002BB17F /* ABFastImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F3FBB818B98342002BB17F /* ABFastImageCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +56,11 @@
 		25F3FBA118B96EC4002BB17F /* ABImageMappingTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ABImageMappingTests-Info.plist"; sourceTree = "<group>"; };
 		25F3FBA318B96EC4002BB17F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		25F3FBA518B96EC4002BB17F /* ABImageMappingTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ABImageMappingTests.m; sourceTree = "<group>"; };
+		25F3FBAF18B9705D002BB17F /* Demo Images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Demo Images"; sourceTree = SOURCE_ROOT; };
+		25F3FBB418B97643002BB17F /* UIImage+DecompressAndMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+DecompressAndMap.h"; sourceTree = SOURCE_ROOT; };
+		25F3FBB518B97643002BB17F /* UIImage+DecompressAndMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+DecompressAndMap.m"; sourceTree = SOURCE_ROOT; };
+		25F3FBB718B98342002BB17F /* ABFastImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABFastImageCell.h; sourceTree = "<group>"; };
+		25F3FBB818B98342002BB17F /* ABFastImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABFastImageCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,12 +120,17 @@
 		25F3FB8018B96EC4002BB17F /* ABImageMapping */ = {
 			isa = PBXGroup;
 			children = (
+				25F3FBB418B97643002BB17F /* UIImage+DecompressAndMap.h */,
+				25F3FBB518B97643002BB17F /* UIImage+DecompressAndMap.m */,
 				25F3FB8918B96EC4002BB17F /* ABAppDelegate.h */,
 				25F3FB8A18B96EC4002BB17F /* ABAppDelegate.m */,
 				25F3FB8C18B96EC4002BB17F /* Main.storyboard */,
 				25F3FB8F18B96EC4002BB17F /* ABViewController.h */,
 				25F3FB9018B96EC4002BB17F /* ABViewController.m */,
+				25F3FBB718B98342002BB17F /* ABFastImageCell.h */,
+				25F3FBB818B98342002BB17F /* ABFastImageCell.m */,
 				25F3FB9218B96EC4002BB17F /* Images.xcassets */,
+				25F3FBAF18B9705D002BB17F /* Demo Images */,
 				25F3FB8118B96EC4002BB17F /* Supporting Files */,
 			);
 			path = ABImageMapping;
@@ -231,6 +244,7 @@
 			files = (
 				25F3FB9318B96EC4002BB17F /* Images.xcassets in Resources */,
 				25F3FB8518B96EC4002BB17F /* InfoPlist.strings in Resources */,
+				25F3FBB018B9705D002BB17F /* Demo Images in Resources */,
 				25F3FB8E18B96EC4002BB17F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -253,6 +267,8 @@
 				25F3FB8718B96EC4002BB17F /* main.m in Sources */,
 				25F3FB9118B96EC4002BB17F /* ABViewController.m in Sources */,
 				25F3FB8B18B96EC4002BB17F /* ABAppDelegate.m in Sources */,
+				25F3FBB918B98342002BB17F /* ABFastImageCell.m in Sources */,
+				25F3FBB618B97643002BB17F /* UIImage+DecompressAndMap.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -382,7 +398,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ABImageMapping/ABImageMapping-Prefix.pch";
 				INFOPLIST_FILE = "ABImageMapping/ABImageMapping-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "5C9D4490-A384-46A9-9A2E-83603095308D";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -395,7 +414,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ABImageMapping/ABImageMapping-Prefix.pch";
 				INFOPLIST_FILE = "ABImageMapping/ABImageMapping-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "5C9D4490-A384-46A9-9A2E-83603095308D";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
