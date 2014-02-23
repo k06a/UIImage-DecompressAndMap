@@ -400,7 +400,7 @@
 				INFOPLIST_FILE = "ABImageMapping/ABImageMapping-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5C9D4490-A384-46A9-9A2E-83603095308D";
+				PROVISIONING_PROFILE = "7B45660C-D394-4D21-A126-8373D161CAAA";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -416,7 +416,7 @@
 				INFOPLIST_FILE = "ABImageMapping/ABImageMapping-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5C9D4490-A384-46A9-9A2E-83603095308D";
+				PROVISIONING_PROFILE = "77FA1FBE-0401-400A-AC57-ACCC5716CF4B";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -483,6 +483,7 @@
 				25F3FBAB18B96EC4002BB17F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		25F3FBAC18B96EC4002BB17F /* Build configuration list for PBXNativeTarget "ABImageMappingTests" */ = {
 			isa = XCConfigurationList;
@@ -491,6 +492,7 @@
 				25F3FBAE18B96EC4002BB17F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
