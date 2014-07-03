@@ -82,6 +82,9 @@ void munmap_wrapper(void *p, const void *cp, size_t l) { munmap(p,l); }
 
 + (UIImage *)imageMapFromPath:(NSString *)path
 {
+    if (access([path UTF8String], R_OK) == -1)
+        return nil;
+    
     int width = 0;
     int height = 0;
     
