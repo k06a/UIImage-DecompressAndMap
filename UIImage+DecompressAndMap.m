@@ -40,25 +40,27 @@ void munmap_wrapper(void *p, const void *cp, size_t l) { munmap(p,l); }
     CGImageRef sourceImage = self.CGImage;
     
     //Parameters needed to create the bitmap context
-    size_t width = resizeSize.width;//CGImageGetWidth(sourceImage);
-    size_t height = resizeSize.height;//CGImageGetHeight(sourceImage);
-    size_t bitsPerComponent = 8;    //Each component is 1 byte, so 8 bits
-    size_t bytesPerRow = 4 * width; //Uncompressed RGBA is 4 bytes per pixel
-    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    uint32_t width = resizeSize.width;//CGImageGetWidth(sourceImage);
+    uint32_t height = resizeSize.height;//CGImageGetHeight(sourceImage);
+    NSInteger bitsPerComponent = 8;    //Each component is 1 byte, so 8 bits
+    NSInteger bytesPerRow = 4 * width; //Uncompressed RGBA is 4 bytes per pixel
     
     FILE *file = fopen([path UTF8String], "w+");
+    if (file == NULL)
+        return nil;
     int filed = fileno(file);
     size_t size = height*bytesPerRow+4+4;
     ftruncate(filed, size);
     char *data = mmap(NULL, size, PROT_READ|PROT_WRITE, MAP_SHARED, filed, 0);
-    *(int *)(data+0) = (int)width;
-    *(int *)(data+4) = (int)height;
+    *(uint32_t *)(data+0) = (uint32_t)width;
+    *(uint32_t *)(data+4) = (uint32_t)height;
     data += 8;
     size -= 8;
     fclose(file);
     
     //Create uncompressed context, draw the compressed source image into it
     //and save the resulting image.
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
     CGContextRef context = CGBitmapContextCreate(data, width, height, bitsPerComponent, bytesPerRow, colorSpace, (uint32_t)kCGImageAlphaPremultipliedLast);
     
     CGFloat kx = resizeSize.width / cropRect.size.width;
@@ -82,30 +84,24 @@ void munmap_wrapper(void *p, const void *cp, size_t l) { munmap(p,l); }
 
 + (UIImage *)imageMapFromPath:(NSString *)path
 {
-    if (access([path UTF8String], R_OK) == -1)
-        return nil;
-    
-    int width = 0;
-    int height = 0;
-    
     FILE *file = fopen([path UTF8String], "rb");
     if (file == NULL)
         return nil;
-    int filed = fileno(file);
-    fread(&width, 4, 1, file);
-    fread(&height, 4, 1, file);
-    fseek(file, 0, SEEK_SET);
     
-    int bitsPerComponent = 8;
-    int bytesPerRow = 4 * width;
-    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    uint32_t sizes[2];
+    fread(&sizes, 8, 1, file);
+    uint32_t width = sizes[0];
+    uint32_t height = sizes[1];
     
-    size_t size = height*bytesPerRow+4+4;
-    char *data = mmap(NULL, size, PROT_READ, MAP_SHARED, filed, 0);
+    NSInteger bitsPerComponent = 8;
+    NSInteger bytesPerRow = 4 * width;
+    size_t size = height*bytesPerRow + 4 + 4;
+    char *data = mmap(NULL, size, PROT_READ, MAP_SHARED, fileno(file), 0);
     data += 8;
     size -= 8;
     fclose(file);
     
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
     CGDataProviderRef provider = CGDataProviderCreateWithData(data, data, size, munmap_wrapper);
     CGImageRef inflatedImage = CGImageCreate(width, height, bitsPerComponent, 4*8, bytesPerRow, colorSpace, (uint32_t)kCGImageAlphaPremultipliedLast, provider, NULL, NO, kCGRenderingIntentDefault);
     
