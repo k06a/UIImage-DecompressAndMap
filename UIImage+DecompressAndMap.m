@@ -145,7 +145,9 @@ void munmap_wrapper(void *p, const void *cp, size_t l) { munmap(p,l); }
     CGContextRelease(context);
     CGDataProviderRelease(provider);
     
-    return [UIImage imageWithCGImage:inflatedImage scale:self.scale orientation:UIImageOrientationUp];
+    UIImage *img = [UIImage imageWithCGImage:inflatedImage scale:self.scale orientation:UIImageOrientationUp];
+    CGImageRelease(inflatedImage);
+    return img;
 }
 
 + (UIImage *)imageMapFromData:(NSData *)data
@@ -172,6 +174,7 @@ void munmap_wrapper(void *p, const void *cp, size_t l) { munmap(p,l); }
     CGDataProviderRelease(provider);
     
     UIImage *img = [UIImage imageWithCGImage:inflatedImage scale:scale orientation:UIImageOrientationUp];
+    CGImageRelease(inflatedImage);
     return img;
 }
 
